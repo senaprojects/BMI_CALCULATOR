@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <title>BMI Calculator</title>
+    <style>
+        .container {
+            width: 400px;
+            height: 600px;
+            margin-left: 400px;
+            margin-top: 50px;
+            background-color: pink;
+            padding-left: 80px;
+            border-radius: 15px 100px;
+        }
+        #height, #weight {
+            width: 200px;
+            height: 25px;
+            margin-top: 30px;
+            border-style: solid;
+            border-radius: 50px;
+        }
+        
+        #weight-guide{
+            margin-left: 75px;
+            margin-top: 25px;
+        }
+        
+        #results{
+            font-size: 20px;
+            margin-left: 50px;
+            margin-top: 20px;
+            color:black;
+        }
+        
+        button{
+            width: 100px;
+            height: 35px;
+            margin-left: 250px;
+            margin-top:185px;
+            border-radius: 90px;
+            border-style:solid;
+            background-color:white;
+            color: black;
+            font-size: 15px;
+        }
+        
+        h1{
+            padding-left: 15px;
+            padding-top: 25px;
+        }
+        h3{
+            margin-top: 75px;
+            margin-left: -10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+    <h1>BMI Calculator</h1>
+    <form>
+    <p><label>Height in CM: </label><input type="text" id="height"></p>
+    <p><label>Weight in KG: </label><input type="text" id="weight"></p>
+    <h3>"He who has health, has hope; and he who has hope, has everything"</h3>
+    <button>Calculate</button>
+    <div id="results"></div>
+
+    
+    </div>
+    </form>
+    </div>
+</body>
+<script>
+    const form = document.querySelector('form');
+
+form.addEventListener('submit', function(e){
+    e.preventDefault();
+    
+    const height = parseInt(document.querySelector('#height').value);
+    const weight = parseInt(document.querySelector('#weight').value);
+    const results = document.querySelector('#results');
+    
+    if((height === '') || (height < 0) || (isNaN(height))){
+        //NaN !== NaN
+        results.innerHTML = "Please provide a valid height!";
+        
+    } else if (weight === '' || weight < 0 || isNaN(weight)){
+        results.innerHTML = "Please provide a valid weight!";
+    } else {
+    //calculate BMI
+    ;
+    const bmi =(weight/((height*height)/10000)).toFixed(2);
+    //display the results
+  
+    if(bmi<18.6)results.innerHTML=`under weight:<span>${bmi}</span>`;
+    else if(bmi>=18.6)results.innerHTML=`normal:<span>${bmi}</span>`;
+    else results.innerHTML=`over weight:<span>${bmi}</span>`;
+    }
+
+    
+    
+});
+</script>
+</html>
